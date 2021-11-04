@@ -1,0 +1,2 @@
+### Get Request
+GET http://localhost:8000/bootcamps HTTP 1.1
