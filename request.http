@@ -1,5 +1,0 @@
-### Get Request
-GET http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
-
-### Get Request
-POST http://localhost:8000/api/v1/bootcamps/1 HTTP/1.1

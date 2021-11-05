@@ -1,0 +1,18 @@
+### Get Request
+GET http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
+
+### GET Request
+GET http://localhost:8000/api/v1/bootcamps/1 HTTP/1.1
+
+### POST Request
+POST http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
+content-type: application/json
+{}
+
+### PUT Request
+PUT http://localhost:8000/api/v1/bootcamps/1 HTTP/1.1
+content-type: application/json
+{}
+
+### GET Request
+DELETE http://localhost:8000/api/v1/bootcamps/1 HTTP/1.1
