@@ -10,25 +10,34 @@ const bootcampRoutes = require("./routes/bootcampRoutes");
 dotenv.config({ path: "./config/config.env" });
 // Create express instance
 const app = express();
-// Connection to the database
-connectDB();
-
+// Set PORT Variable
+const PORT = process.env.PORT || 5000;
 // Dev logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("tiny"));
 }
-
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
-
-const PORT = process.env.PORT || 5000;
-const server = app.listen(
-  PORT,
-  console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port :${PORT}`.yellow
-      .bold
-  )
-);
+// Connect to DB then start server
+const server = async () => {
+  try {
+    // Connection to the database
+    await connectDB();
+    app.listen(
+      PORT,
+      console.log(
+        `Server running in ${process.env.NODE_ENV} mode on port :${PORT}`.yellow
+          .bold
+      )
+    );
+    // Once connected start the server
+  } catch (err) {
+    console.log(`Error: ${err.message}`.red);
+    process.exit(1);
+  }
+};
+// Start the application
+server();
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Error: ${err.message}`.red);
