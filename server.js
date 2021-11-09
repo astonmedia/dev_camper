@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/error");
 // Route Files
 const bootcampRoutes = require("./routes/bootcampRoutes");
 
@@ -10,6 +11,8 @@ const bootcampRoutes = require("./routes/bootcampRoutes");
 dotenv.config({ path: "./config/config.env" });
 // Create express instance
 const app = express();
+// Body Parser
+app.use(express.json());
 // Set PORT Variable
 const PORT = process.env.PORT || 5000;
 // Dev logging
@@ -18,6 +21,8 @@ if (process.env.NODE_ENV === "development") {
 }
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
+// Custom error handler
+app.use(errorHandler);
 // Connect to DB then start server
 const server = async () => {
   try {
@@ -42,5 +47,5 @@ server();
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Error: ${err.message}`.red);
   // Close server and exit process
-  server.close(() => process.exit(1));
+  process.exit(1);
 });
