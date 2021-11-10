@@ -2,53 +2,33 @@
 GET http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
 
 ### GET Request
-GET http://localhost:8000/api/v1/bootcamps/61886d5a9ed7650b1d69300a HTTP/1.1
+GET http://localhost:8000/api/v1/bootcamps/61886d5a9ed7650b1d69300 HTTP/1.1
 
 ### POST Request
 POST http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
 content-type: application/json
 
 {
-		"name": "Devcentral Bootcamp",
-		"description": "Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in front end and full stack web development",
-		"website": "https://devcentral.com",
-		"phone": "(444) 444-4444",
-		"email": "enroll@devcentral.com",
-		"address": "45 Upper College Rd Kingston RI 02881",
-		"careers": [
-			"Mobile Development",
-			"Web Development",
-			"Data Science",
-			"Business"
-		],
-		"housing": false,
+		"name": "Devworks Bootcamp",
+		"description": "Devworks is a full stack JavaScript Bootcamp located in the heart of Boston that focuses on the technologies you need to get a high paying job as a web developer",
+		"website": "https://devworks.com",
+		"phone": "(111) 111-1111",
+		"email": "enroll@devworks.com",
+		"address": "233 Bay State Rd Boston MA 02215",
+		"careers": ["Web Development", "UI/UX", "Business"],
+		"housing": true,
 		"jobAssistance": true,
-		"jobGuarantee": true,
+		"jobGuarantee": false,
 		"acceptGi": true
 }
 
 ### PUT Request
-PUT http://localhost:8000/api/v1/bootcamps/6188866dd24f0944c6a5284f HTTP/1.1
+PUT http://localhost:8000/api/v1/bootcamps/61886d5a9ed7650b1d69300a HTTP/1.1
 content-type: application/json
 
-{
-    	"name": "Devcentral Bootcamp 2",
-		"description": "Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in front end and full stack web development",
-		"website": "https://devcentral.com",
-		"phone": "(444) 444-4444",
-		"email": "enroll@devcentral.com",
-		"address": "45 Upper College Rd Kingston RI 02881",
-		"careers": [
-			"Mobile Development",
-			"Web Development",
-			"Data Science",
-			"Business"
-		],
-		"housing": true,
-		"jobAssistance": true,
-		"jobGuarantee": true,
-		"acceptGi": true
-}
+ {
+
+ }
 
 ### DELETE Request
 DELETE http://localhost:8000/api/v1/bootcamps/6188866dd24f0944c6a5284f HTTP/1.1
