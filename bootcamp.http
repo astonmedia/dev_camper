@@ -1,7 +1,10 @@
-### Get Request
-GET http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
+### Get Request all bootcamps
+GET http://localhost:8000/api/v1/bootcamps/?select=name, description, housing&sort=-name HTTP/1.1
 
-### GET Request
+### Get Request get all bootcamps in radius
+GET http://localhost:8000/api/v1/bootcamps/radius/02118/10/km HTTP/1.1
+
+### GET Request single bootcamp
 GET http://localhost:8000/api/v1/bootcamps/61886d5a9ed7650b1d69300 HTTP/1.1
 
 ### POST Request

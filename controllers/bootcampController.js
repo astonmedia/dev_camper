@@ -7,7 +7,39 @@ const geocoder = require("../utils/geocoder");
 // @route GET /api/v1/bootcamps
 // @access Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
-  const bootcamps = await Bootcamp.find();
+  let query;
+  // Copy request query
+  const reqQuery = { ...req.query };
+
+  // Create array of fields to exclude in the filter
+  const removeFields = ["select", "sort"];
+  // Loop over removeFields and delete them from reqQuery
+  removeFields.forEach((param) => delete reqQuery[param]);
+  // Convert query to a string
+  let queryStr = JSON.stringify(reqQuery);
+  // Find query param and add '$' in front of it
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`
+  );
+  // Create the find method with query params
+  query = Bootcamp.find(JSON.parse(queryStr));
+  // Select fields
+  if (req.query.select) {
+    const fields = req.query.select.split(",").join(" ");
+    query = query.select(fields);
+  }
+  // Sort
+  if (req.query.sort) {
+    const sortBy = req.query.sort.split(",").join(" ");
+    query = query.sort(sortBy);
+  } else {
+    query = query.sort("-createdAt");
+  }
+  // Query Model with above filter
+  const bootcamps = await query;
+  console.log(reqQuery);
+  // Send json response
   res.status(200).json({
     success: true,
     count: bootcamps.length,
@@ -81,10 +113,10 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 });
 
 // @desc Get Bootcamp's within a radius
-// @route GET /api/v1/bootcamps/radius/:zipcode/:distance
+// @route GET /api/v1/bootcamps/radius/:zipcode/:distance/:unit
 // @access Private
 exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
-  const { zipcode, distance } = req.params;
+  const { zipcode, distance, unit } = req.params;
   // Get Lat/lng from geocoder
   const loc = await geocoder.geocode(zipcode);
   const lat = loc[0].latitude;
@@ -92,10 +124,21 @@ exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
   // Calc radius using radians
   // Divide distance by radius of earth
   // Radius of Earth = 3963 mi || 6378 km
-  const radius = distance / 6378;
+  // Use either miles or km's
+  let radius;
+  if (unit === "km") {
+    radius = distance / 6378;
+  } else if (unit === "mi") {
+    radius = distance / 3963;
+  }
   const bootcamps = await Bootcamp.find({
     location: {
       $geoWithin: { $centerSphere: [[lng, lat], radius] },
     },
+  });
+  res.status(200).json({
+    success: true,
+    count: bootcamps.length,
+    data: bootcamps,
   });
 });
