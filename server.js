@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 // Route Files
 const bootcampRoutes = require("./routes/bootcampRoutes");
-
+const courseRoutes = require("./routes/courseRoutes");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 // Create express instance
@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === "development") {
 }
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
+app.use("/api/v1/courses", courseRoutes);
 // Custom error handler
 app.use(errorHandler);
 // Connect to DB then start server
