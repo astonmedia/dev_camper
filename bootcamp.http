@@ -5,7 +5,7 @@ GET http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
 GET http://localhost:8000/api/v1/bootcamps/radius/02118/10/km HTTP/1.1
 
 ### GET Request single bootcamp
-GET http://localhost:8000/api/v1/bootcamps/61886d5a9ed7650b1d69300 HTTP/1.1
+GET http://localhost:8000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788 HTTP/1.1
 
 ### POST Request
 POST http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
@@ -34,4 +34,4 @@ content-type: application/json
  }
 
 ### DELETE Request
-DELETE http://localhost:8000/api/v1/bootcamps/6188866dd24f0944c6a5284f HTTP/1.1
+DELETE http://localhost:8000/api/v1/bootcamps/5d725a037b292f5f8ceff787 HTTP/1.1
