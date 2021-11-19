@@ -2,7 +2,7 @@
 GET http://localhost:8000/api/v1/courses/ HTTP/1.1
 
 ### Get single course
-GET http://localhost:8000/api/v1/courses/5d725cd2c4ded7bcb480eaa2/ HTTP/1.1
+GET http://localhost:8000/api/v1/courses/5d725cb9c4ded7bcb480eaa1/ HTTP/1.1
 
 
 ### POST Request
@@ -10,10 +10,10 @@ POST http://localhost:8000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/courses/ HT
 content-type: application/json
 
 {
-		"title": "Full Stack Web Dev 2",
+		"title": "Full Stack Web Dev 3",
 		"description": "In this course you will learn all about the front end with HTML, CSS a...r",
 		"weeks": 10,
-		"tuition": 12000,
+		"tuition": 100000,
 		"minimumSkill": "intermediate",
 		"scholarshipAvailable": false
 }
@@ -32,4 +32,4 @@ content-type: application/json
 }
 
 ### DELETE Request
-DELETE http://localhost:8000/api/v1/courses/5d725cb9c4ded7bcb480eaa1 HTTP/1.1
+DELETE http://localhost:8000/api/v1/courses/619720466815c09b768b0df9 HTTP/1.1
