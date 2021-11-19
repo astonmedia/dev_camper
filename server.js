@@ -22,6 +22,10 @@ if (process.env.NODE_ENV === "development") {
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
+// Set up opening route
+app.use('/', (req, res) => {
+    res.json({message: 'Loaded API'})
+})
 // Custom error handler
 app.use(errorHandler);
 // Connect to DB then start server
