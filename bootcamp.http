@@ -7,6 +7,9 @@ GET http://localhost:8000/api/v1/bootcamps/radius/02118/10/km HTTP/1.1
 ### GET Request single bootcamp
 GET http://localhost:8000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788 HTTP/1.1
 
+### POST Request single bootcamp photo
+POST http://localhost:8000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/photo HTTP/1.1
+
 ### POST Request
 POST http://localhost:8000/api/v1/bootcamps/ HTTP/1.1
 content-type: application/json
