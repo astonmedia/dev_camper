@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/error");
 // Route Files
 const bootcampRoutes = require("./routes/bootcampRoutes");
 const courseRoutes = require("./routes/courseRoutes");
+const authRoutes = require("./routes/authRoutes");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 // Create express instance
@@ -29,6 +30,7 @@ app.use(fileupload());
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
+app.use("/api/v1/auth", authRoutes);
 // Set up opening route
 app.use("/", (req, res) => {
   res.json({ message: "Loaded API" });
