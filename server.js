@@ -6,6 +6,7 @@ const colors = require("colors");
 const fileupload = require("express-fileupload");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
+const cookieParser = require("cookie-parser");
 // Route Files
 const bootcampRoutes = require("./routes/bootcampRoutes");
 const courseRoutes = require("./routes/courseRoutes");
@@ -16,6 +17,8 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 // Body Parser
 app.use(express.json());
+// Set up cookie parser
+app.use(cookieParser());
 // Set up static folder
 app.use(express.static(path.join(__dirname, "public")));
 // Set PORT Variable
