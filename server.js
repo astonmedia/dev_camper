@@ -34,10 +34,7 @@ app.use(fileupload());
 app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/auth", authRoutes);
-// Set up opening route
-app.use("/", (req, res) => {
-  res.json({ message: "Loaded API" });
-});
+
 // Custom error handler
 app.use(errorHandler);
 // Connect to DB then start server
