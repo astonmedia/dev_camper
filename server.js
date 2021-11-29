@@ -11,6 +11,7 @@ const cookieParser = require("cookie-parser");
 const bootcampRoutes = require("./routes/bootcampRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 // Create express instance
@@ -34,6 +35,7 @@ app.use(fileupload());
 app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", userRoutes);
 
 // Custom error handler
 app.use(errorHandler);
