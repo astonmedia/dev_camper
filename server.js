@@ -12,6 +12,7 @@ const bootcampRoutes = require("./routes/bootcampRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 // Create express instance
@@ -36,7 +37,7 @@ app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
-
+app.use("/api/v1/reviews", reviewRoutes);
 // Custom error handler
 app.use(errorHandler);
 // Connect to DB then start server
