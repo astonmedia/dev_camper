@@ -8,6 +8,8 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xssClean = require("xss-clean");
 // Route Files
 const bootcampRoutes = require("./routes/bootcampRoutes");
 const courseRoutes = require("./routes/courseRoutes");
@@ -35,6 +37,10 @@ if (process.env.NODE_ENV === "development") {
 app.use(fileupload());
 // Sanitize data
 app.use(mongoSanitize());
+// Helmet
+app.use(helmet());
+// Xss Clean
+app.use(xssClean());
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
