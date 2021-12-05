@@ -10,6 +10,9 @@ const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const xssClean = require("xss-clean");
+const rateLimit = require("express-rate-limit");
+const hpp = require("hpp");
+const cors = require("cors");
 // Route Files
 const bootcampRoutes = require("./routes/bootcampRoutes");
 const courseRoutes = require("./routes/courseRoutes");
@@ -41,6 +44,16 @@ app.use(mongoSanitize());
 app.use(helmet());
 // Xss Clean
 app.use(xssClean());
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: 100,
+});
+app.use(limiter);
+// prevent http parma polution
+app.use(hpp());
+// Enable Cors
+app.use(cors());
 // Mount Routers to URLS
 app.use("/api/v1/bootcamps", bootcampRoutes);
 app.use("/api/v1/courses", courseRoutes);
